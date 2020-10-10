@@ -1,0 +1,201 @@
+﻿<Window  Background="#FF222121" x:Class="Account_MVVM.View.SignIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Account_MVVM.View"
+        xmlns:vm ="clr-namespace:Account_MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="600" Width="370">
+    <Window.Resources>
+        <vm:SignInViewModel x:Key="viewModel"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF222121"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Foreground" Value="#FFDADADA"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#666666"/>
+                                <Setter Property= "Foreground" Value ="#EFEFEF"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFFF4A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#FF222121"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="10"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource viewModel}"/>
+    </Window.DataContext>
+    <Grid>
+        <TextBox
+            FontFamily="Candara"
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="99,68,0,0"
+            TextWrapping="Wrap"
+            Text="{Binding City, Mode=TwoWay}"
+            VerticalAlignment="Top"
+            Width="238" VerticalContentAlignment="Center"/>
+        <TextBox
+            FontFamily="Candara"           
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="99,165,0,0"
+            TextWrapping="Wrap"
+            Text="{Binding Age, Mode=TwoWay}"
+            VerticalAlignment="Top"
+            Width="238" VerticalContentAlignment="Center"/>
+        <TextBox 
+             FontFamily="Candara"           
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="99,269,0,0" 
+            TextWrapping="Wrap"
+            Text="{Binding Salary, Mode=TwoWay}" 
+            VerticalAlignment="Top"
+            Width="238" VerticalContentAlignment="Center"/>
+        <TextBox 
+            FontFamily="Candara"
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="99,366,0,0" 
+            TextWrapping="Wrap"
+            Text ="{Binding Gender, Mode=TwoWay}"
+            VerticalAlignment="Top"
+            Width="238" VerticalContentAlignment="Center"/>
+        <Image
+            HorizontalAlignment="Left"
+            Margin="32,68,0,0"
+            VerticalAlignment="Top"
+            Source="output-onlinepngtools.jpg"
+            Stretch="Fill" Height="45" Width="46">
+        </Image>
+        <Image 
+            HorizontalAlignment="Left"
+            Height="45"
+            VerticalAlignment="Top"
+            Width="46"
+            Margin="32,165,0,0"
+            Source="output-onlinepngtools (1).jpg">
+        </Image>
+        <Image
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="32,269,0,0"
+            VerticalAlignment="Top"
+            Width="46" Source="output-onlinepngtools (2).jpg"/>
+        <Image
+            HorizontalAlignment="Left"
+            Height="45"
+            Margin="32,367,0,0"
+            VerticalAlignment="Top"
+            Width="46" Source="output-onlinepngtools (3).jpg"/>
+        <Button
+            Command="{Binding SaveDataAndCloseWindow}"
+            FontFamily="Candara"
+            Content="Save data"
+            HorizontalAlignment="Left"
+            Margin="206,483,0,0"
+            VerticalAlignment="Top"
+            Width="131" Height="40"/>
+        <Label
+            Foreground="White"
+            FontSize="20"
+            FontFamily="Candara"
+            Content="City"
+            HorizontalAlignment="Left"
+            Margin="99,28,0,0"
+            VerticalAlignment="Top"
+            Width="154"/>
+        <Label
+            Foreground="White"
+            FontSize="20"
+            FontFamily="Candara"
+            Content="Age"
+            HorizontalAlignment="Left"
+            Margin="99,118,0,0"
+            VerticalAlignment="Top"
+            Width="154"/>
+        <Label
+            Foreground="White"
+            FontSize="20"
+            FontFamily="Candara"
+            Content="Salary ($ US)"
+            HorizontalAlignment="Left"
+            Margin="99,229,0,0"
+            VerticalAlignment="Top"
+            Width="154"/>
+        <Label
+            Foreground="White"
+            FontSize="20"
+            FontFamily="Candara"
+            Content="Gender"
+            HorizontalAlignment="Left"
+            Margin="99,326,0,0"
+            VerticalAlignment="Top"
+            Width="154"/>
+        <Button
+            Command="{Binding ShowData}"
+            FontSize="20"
+            FontFamily="Candara"
+            Content="Show data"
+            HorizontalAlignment="Left"
+            Margin="32,483,0,0"
+            VerticalAlignment="Top"
+            Width="120"
+            Height="40"
+            RenderTransformOrigin="0.5,0.5"/>
+    </Grid>
+</Window>
